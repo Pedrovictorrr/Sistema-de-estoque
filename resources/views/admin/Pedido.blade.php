@@ -18,6 +18,7 @@
                 <input type="hidden" id="csrfToken" name="_token" value="{{ csrf_token() }}">
                 <select class="custom-select col-md-10" id="inputGroupSelect04" aria-label="Example select with button addon"
                     onchange="updateMaxValue()">
+                    <option>Selecione um produto</option>
                     @foreach ($produtos as $produto)
                         <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
                     @endforeach
@@ -35,8 +36,9 @@
             <div class="p-3">
                 <table id="produtoTable" class="table table-bordered">
                     <thead>
-                        <tr>
-                            <th scope="col-2">#</th>
+                        <tr> 
+                            <th scope="col-2">Codigo</th>
+                            <th scope="col-2">Foto</th>
                             <th scope="col-2">Produto</th>
                             <th scope="col-2">Categoria</th>
                             <th scope="col-1">Quantidade</th>
@@ -107,11 +109,13 @@
                     // Add the selected product data to the table
                     var tableBody = $("#produtoTable tbody");
                     var newRow = "<tr>" +
+                        
                         "<td>" + response.id + "</td>" +
+                        "<td>" + "<img height='50px' height='50px' src='" + response.foto + "' alt='Product Photo'>" + "</td>" +
                         "<td>" + response.produto + "</td>" +
                         "<td>" + response.categoria + "</td>" +
-                        "<td>" + response.quantidade + "</td>" +
-                        "<td>" + response.valor + "</td>" +
+                        "<td>" + quantidade + "</td>" +
+                        "<td>R$" + response.valor + "/ por unidade</td>" +
                         "<td>" +
                         "<button type='button' class='btn btn-sm btn-danger' onclick='excluirProduto(this)'>Excluir</button>" +
                         "<button type='button' class='btn btn-sm btn-primary' onclick='editarProduto(this)'>Editar</button>" +

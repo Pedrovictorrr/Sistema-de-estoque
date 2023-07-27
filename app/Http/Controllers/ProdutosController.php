@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class ProdutosController extends Controller
 {
    public function index()
-   {  
-     $categorias =  Categorias::get();
-      return view('admin.Produtos.create',compact('categorias'));
+   {
+      $categorias =  Categorias::get();
+      return view('admin.Produtos.create', compact('categorias'));
    }
 
 
@@ -50,9 +50,9 @@ class ProdutosController extends Controller
          $imagem = $request->file('imagem');
 
          // Define um nome único para a imagem usando o timestamp atual
-         $nomeImagem = $request->NomeDoProduto.'_' . time() . '.' . $imagem->extension();
-
-         return  $imagem->storeAs('public/imagens', $nomeImagem);
+         $nomeImagem = $request->NomeDoProduto . '_' . time() . '.' . $imagem->extension();
+         $imagem->storeAs('public/imagens', $nomeImagem);
+         return  '/storage/imagens' . $nomeImagem;
       } else {
          return  null;
       }
@@ -70,35 +70,35 @@ class ProdutosController extends Controller
 
    public function getMaxValue(Request $request)
    {
-       // Fetch the maximum value for the input based on the selected product ID.
-       // Replace this with your logic to determine the maximum value.
+      // Fetch the maximum value for the input based on the selected product ID.
+      // Replace this with your logic to determine the maximum value.
 
-       $productId = $request->input('productId');
-       $maxValue =  Produtos::where('id',$productId)->get()->value('Qtd_Produtos');
-   // Your logic to determine the maximum value goes here;
+      $productId = $request->input('productId');
+      $maxValue =  Produtos::where('id', $productId)->get()->value('Qtd_Produtos');
+      // Your logic to determine the maximum value goes here;
 
-       return response()->json(['maxValue' => $maxValue]);
+      return response()->json(['maxValue' => $maxValue]);
    }
 
    public function adicionarProdutoCarrinho(Request $request)
    {
-       // Fetch the selected product data and do some processing (e.g., fetching from the database, calculating values, etc.)
+      // Fetch the selected product data and do some processing (e.g., fetching from the database, calculating values, etc.)
 
-       $productId = $request->input('productId');
-       $product =  Produtos::where('id',$productId)->first();
-       // Replace these placeholders with actual data from the database or other sources
+      $productId = $request->input('productId');
+      $product =  Produtos::where('id', $productId)->first();
+      // Replace these placeholders with actual data from the database or other sources
       $id = $product->id;
-      $categoria = $product->categoria; 
-       // Return the product data as JSON response
-       return response()->json([
-           'id' => $product->id,
-           'produto' => $product->nome,
-           'categoria' => $categoria->NomeCategoria,
-           'quantidade' => $product->Qtd_Produtos,
-           'valor' => $product->preco,
-           'foto' => $product->foto,
-           'validade' => $product->data_vencimento,
-           'descricao' => $product->descricao,
-       ]);
+      $categoria = $product->categoria;
+      // Return the product data as JSON response
+      return response()->json([
+         'id' => $product->id,
+         'produto' => $product->nome,
+         'categoria' => $categoria->NomeCategoria,
+         'quantidade' => $product->Qtd_Produtos,
+         'valor' => $product->preco,
+         'foto' => $product->foto,
+         'validade' => $product->data_vencimento,
+         'descricao' => $product->descricao,
+      ]);
    }
 }
