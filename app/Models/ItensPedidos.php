@@ -10,15 +10,15 @@ class ItensPedidos extends Model
     use HasFactory;
 
 
-    protected $fillable = ['id_produto', 'Qtd_produtos', 'status'];
-
+    protected $fillable = ['id_produto', 'Qtd_produtos', 'status','id_pedido'];
+    protected $table = 'itens_pedidos';
     public function pedido()
     {
-        return $this->belongsTo(Pedido::class);
+        return $this->belongsTo(Pedidos::class);
     }
 
     public function produto()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Produtos::class, 'id_produto');
     }
 }

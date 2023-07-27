@@ -23,6 +23,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/fazer-pedido',[PedidosController::class,'index'])->name('fazer.pedido');
+Route::get('/show-pedido/{id}',[PedidosController::class,'show'])->name('show.pedido');
+Route::get('/pdf-pedido/{id}',[PedidosController::class,'generatePDf'])->name('pdf.pedido');
+Route::post('/enviar-pedido',[PedidosController::class,'store'])->name('enviar.pedido');
 
 // Rotas de produto // 
 Route::get('/inserir-produto',[ProdutosController::class,'index'])->name('inserir.produto');

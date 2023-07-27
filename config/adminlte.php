@@ -336,6 +336,12 @@ return [
             
         ],
         [
+            'text' => 'Listar Pedidos',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-list',
+            
+        ],
+        [
             'text' => 'Relatórios',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-chart-pie',
