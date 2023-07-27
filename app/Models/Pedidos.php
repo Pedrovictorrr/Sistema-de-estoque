@@ -13,7 +13,7 @@ class Pedidos extends Model
 
     public function itens()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(ItensPedidos::class);
     }
 
     public function user()

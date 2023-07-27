@@ -88,12 +88,12 @@ class ProdutosController extends Controller
        $product =  Produtos::where('id',$productId)->first();
        // Replace these placeholders with actual data from the database or other sources
       $id = $product->id;
-
+      $categoria = $product->categoria; 
        // Return the product data as JSON response
        return response()->json([
            'id' => $product->id,
            'produto' => $product->nome,
-           'categoria' => $product->NomeCategoria,
+           'categoria' => $categoria->NomeCategoria,
            'quantidade' => $product->Qtd_Produtos,
            'valor' => $product->preco,
            'foto' => $product->foto,

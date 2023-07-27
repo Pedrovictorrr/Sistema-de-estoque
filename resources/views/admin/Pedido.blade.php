@@ -46,21 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Cimento</td>
-                            <td>Material de construção</td>
-                            <td>90</td>
-                            <td>R$500,00</td>
-                            <td>
-                                <button class="btn-primary btn">
-                                    Editar
-                                </button>
-                                <button class="btn-danger btn">
-                                    Excluir
-                                </button>
-                            </td>
-                        </tr>
+        
 
                     </tbody>
                 </table>
