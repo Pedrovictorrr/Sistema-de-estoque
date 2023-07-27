@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->unsignedBigInteger('categoria_id');
-            $table->text('descricao');
+            $table->text('descricao')->nullable();
             $table->decimal('preco', 10, 2);
             $table->integer('Qtd_Produtos');
             $table->string('foto')->nullable();
-            $table->date('data_vencimento');
+            $table->date('data_vencimento')->nullable();
             $table->timestamps();
 
             // Foreign key constraint
