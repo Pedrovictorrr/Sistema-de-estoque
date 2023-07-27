@@ -57,7 +57,7 @@
            
             <div class="p-3">
                 <a target="_blank" href="{{route('pdf.pedido',['id' => $pedido->id])}}" class="btn btn-primary">Gerar pdf / Imprimir</a target="_blank">
-                <button class="btn btn-success">Ver todos os pedidos</button>
+                <a href="{{route('listar.pedidos')}}" class="btn btn-success">Ver todos os pedidos</a href="{{route('pdf.pedido',['id' => $pedido->id])}}">
             </div>
         </div>
     </div>

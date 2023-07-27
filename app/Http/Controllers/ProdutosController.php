@@ -40,7 +40,7 @@ class ProdutosController extends Controller
          'foto' =>  $caminhoImagem,
          'data_vencimento' => $validade,
       ]);
-      return redirect()->route('inserir.produto');
+      return redirect()->route('listar.produtos');
    }
 
    public function verifyImage($request)
@@ -54,7 +54,7 @@ class ProdutosController extends Controller
          $imagem->storeAs('public/imagens', $nomeImagem);
          return  '/storage/imagens' . $nomeImagem;
       } else {
-         return  null;
+         return  'img/add-img.png';
       }
    }
 
@@ -100,5 +100,23 @@ class ProdutosController extends Controller
          'validade' => $product->data_vencimento,
          'descricao' => $product->descricao,
       ]);
+   }
+   public function listarProdutos()
+   {  
+      $produtos = Produtos::get();
+      return view('admin.Produtos.List',compact('produtos'));
+   }
+
+   public function editProduct(Request $request)
+   {  
+      $produto = $request->all();
+      return view('admin.Produtos.List',compact('produtos'));
+   }
+   public function deleteProduto(Request $request)
+   {  
+      $teste = $request->id;
+      $deleteProduto = Produtos::where('id',$request->id)->delete();
+
+      return true;
    }
 }

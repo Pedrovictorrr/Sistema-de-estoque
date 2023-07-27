@@ -85,4 +85,13 @@ class PedidosController extends Controller
         $hash = Hash::make($user);
        return Pdf::loadView('admin.pdf.pdf', compact('pedido', 'user', 'itens','hash'))->setPaper('a4')->stream();
     }
+
+    public function listarPedidos()
+    {   
+        $pedidosQuery = Pedidos::query();
+
+        // Use the paginate() method on the query builder to get the paginated results.
+        $pedidos = $pedidosQuery->paginate(10);
+       return view('admin.Pedido.List', compact('pedidos'));
+    }
 }

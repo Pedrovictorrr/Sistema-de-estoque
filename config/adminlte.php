@@ -331,19 +331,19 @@ return [
         ],
         [
             'text' => 'Listar Produtos',
-            'url'  => 'admin/settings',
+            'url'  => '/listarProdutos',
             'icon' => 'fas fa-fw fa-list',
             
         ],
         [
             'text' => 'Listar Pedidos',
-            'url'  => 'admin/settings',
+            'url'  => '/listarPedidos',
             'icon' => 'fas fa-fw fa-list',
             
         ],
         [
             'text' => 'Relatórios',
-            'url'  => 'admin/settings',
+            'url'  => '/Relatorios',
             'icon' => 'fas fa-fw fa-chart-pie',
         ],
         // [
