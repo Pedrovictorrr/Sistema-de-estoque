@@ -14,28 +14,39 @@
 
 @section('content')
     <div class="container-xxl">
-        <div class="p-3 col-sm-12 shadow rounded border bg-white mb-2">
+        <div class="p-3 col-sm-12 shadow rounded border bg-white mb-2 table-container">
+            <div class="card-header row">
+                <div class="col-md-6 p-2 mt-1">
+                    <h3 class="card-title">Tabela de pedidos</h3>
+                </div>
+
+                <div class="mb-3 mt-1 col-md-6">
+                    <input type="text" class="form-control" id="searchInput"
+                        placeholder="Buscar por nome do remetente, destinatario ou codigo do pedido">
+
+                </div>
+            </div>
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col">#</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Cod.</th>
+                        <th scope="col">Remetente</th>
+                        <th scope="col">Destinatario</th>
                         <th scope="col">Qtd. itens</th>
                         <th scope="col">Valor Total</th>
                         <th scope="col">Data de criação</th>
                         <th scope="col">Documento</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="produtoInfo" class="overflow-auto produto-list mb-2">
                     @foreach ($pedidos as $pedido)
-                        <tr class="text-center">
-                            <th scope="row">{{ $pedido->id }}</th>
+                        <tr class="text-center product-row">
+                            <td scope="row"><strong>{{ $pedido->id }}</strong></td>
                             <td>{{ $pedido->user->name }}</td>
-                            <td>{{ $pedido->user->email }}</td>
+                            <td>{{ $pedido->destinatario->name }}</td>
                             <td>{{ $pedido->Qtd_itens }}</td>
                             <td>R$ {{ number_format( $pedido->Valor_total, 2, ',', '.') }}</td>
-                            <td>{{ $pedido->created_at }}</td>
+                            <td>{{ $pedido->created_at->format('d/m/Y H:i:s') }}</td>
                             <td>
                                 <a target="_blank" href="{{ route('pdf.pedido', ['id' => $pedido->id]) }}"
                                     class="btn btn-danger">PDF</a target="_blank">
@@ -53,7 +64,7 @@
                 <div class="p-3 bg-white border  rounded shadow row">
             <div class="col-6">
                 <strong>Donwload da planilha: </strong>
-                <button class="btn btn-success"> Excel</button>
+                <a href="{{route('downloadListExcel.Pedidos')}}" target="_blank" class="btn btn-success"> Excel</a>
                 <button class="btn btn-danger"> PDF</button>
             </div>
             <div class="d-flex justify-content-end col-6">
@@ -126,8 +137,45 @@
             background-color: #4527a0;
         }
     </style>
+    <style>
+        .table-container {
+            padding: 20px;
+            max-height: 600px; /* Defina a altura máxima que desejar */
+            overflow-y: auto; /* Adiciona um scroll vertical quando necessário */
+        }
+    </style>
 @stop
 
 @section('js')
+<script>
+$(document).ready(function () {
+    // Function to filter the rows based on the search query
+    function filterTableRows() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("produtoInfo");
+        tr = table.getElementsByClassName("product-row");
 
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            var foundMatch = false;
+            for (var j = 0; j < 3; j++) { // Change this to 3 to search the first three columns (index 0, 1, and 2)
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    foundMatch = true;
+                    break;
+                }
+            }
+            tr[i].style.display = foundMatch ? "" : "none";
+        }
+    }
+
+    // Add an event listener to the search input field
+    $("#searchInput").on("input", function () {
+        filterTableRows();
+    });
+});
+
+</script>
 @stop

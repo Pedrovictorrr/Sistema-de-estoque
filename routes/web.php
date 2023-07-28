@@ -28,6 +28,7 @@ Route::get('/show-pedido/{id}',[PedidosController::class,'show'])->name('show.pe
 Route::get('/pdf-pedido/{id}',[PedidosController::class,'generatePDf'])->name('pdf.pedido');
 Route::post('/enviar-pedido',[PedidosController::class,'store'])->name('enviar.pedido');
 Route::get('/listarPedidos', [PedidosController::class, 'listarPedidos'])->name('listar.pedidos');
+Route::get('/PedidosListExcel', [PedidosController::class, 'downloadListExcel'])->name('downloadListExcel.Pedidos');
 
 // Rotas de produto // 
 Route::get('/inserir-produto',[ProdutosController::class,'index'])->name('inserir.produto');
@@ -37,6 +38,7 @@ Route::post('/adicionarProdutoCarrinho', [ProdutosController::class, 'adicionarP
 Route::post('/editProduct', [ProdutosController::class, 'editProduct']);
 Route::get('/listarProdutos', [ProdutosController::class, 'listarProdutos'])->name('listar.produtos');
 Route::post('/delete-produto', [ProdutosController::class, 'deleteProduto'])->name('delete.produtos');
+Route::get('/ProdutosListExcel', [ProdutosController::class, 'downloadListExcel'])->name('downloadListExcel.produtos');
 
 
 // Rotas de Relatorio // 

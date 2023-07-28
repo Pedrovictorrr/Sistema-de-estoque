@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Pedidos as ExportsPedidos;
 use App\Models\ItensPedidos;
 use App\Models\Pedidos;
 use App\Models\Produtos;
@@ -9,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PedidosController extends Controller
 {
@@ -93,7 +95,11 @@ class PedidosController extends Controller
         $pedidosQuery = Pedidos::query();
 
         // Use the paginate() method on the query builder to get the paginated results.
-        $pedidos = $pedidosQuery->paginate(10);
+        $pedidos = $pedidosQuery->paginate(8);
        return view('admin.Pedido.List', compact('pedidos'));
+    }
+    public function downloadListExcel()
+    {
+       return Excel::download(new ExportsPedidos, 'pedidos'.time().'.xlsx');
     }
 }

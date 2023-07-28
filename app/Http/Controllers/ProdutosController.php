@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Produtos as ExportsProdutos;
 use App\Models\Categorias;
 use App\Models\Produtos;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProdutosController extends Controller
 {
@@ -102,22 +104,52 @@ class ProdutosController extends Controller
       ]);
    }
    public function listarProdutos()
-   {  
-      $produtos = Produtos::query();
-      $produtos = $produtos->paginate(8);
-      return view('admin.Produtos.List',compact('produtos'));
+   {
+      $produtos = Produtos::get();
+    
+      return view('admin.Produtos.List', compact('produtos'));
    }
 
    public function editProduct(Request $request)
-   {  
-      $produto = $request->all();
-      return view('admin.Produtos.List',compact('produtos'));
+   {
+      try {
+         $produto = $request->all();
+         $id = $produto['id'];
+         $updateData = [
+            'nome' => $produto['nome'],
+            'preco' => $produto['preco'],
+            'Qtd_Produtos' => $produto['qtd'],
+         ];
+
+         // Verificar e adicionar a descrição se não for nula
+         if ($produto['Descricao'] != null) {
+            $updateData['descricao'] = $produto['Descricao'];
+         }
+
+         // Verificar e adicionar a imagem se não for nula
+         if (isset($produto['imagem'])) {
+            $path = $this->verifyImage($request);
+            $updateData['foto'] = $path;
+         }
+
+         Produtos::where('id', $id)->update($updateData);
+
+         return true;
+
+      } catch (\Throwable $th) {
+         return $th;
+      }
    }
    public function deleteProduto(Request $request)
-   {  
+   {
       $teste = $request->id;
-      $deleteProduto = Produtos::where('id',$request->id)->delete();
+      $deleteProduto = Produtos::where('id', $request->id)->delete();
 
       return true;
+   }
+
+   public function downloadListExcel()
+   {
+      return Excel::download(new ExportsProdutos, 'produtos'.time().'.xlsx');
    }
 }

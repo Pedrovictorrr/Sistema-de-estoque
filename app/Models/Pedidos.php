@@ -20,4 +20,9 @@ class Pedidos extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function destinatario()
+    {
+        return $this->belongsTo(User::class, 'Destinatario');
+    }
 }

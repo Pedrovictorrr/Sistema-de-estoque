@@ -9,8 +9,8 @@
         }
         // Preencha o conteúdo do modal com as informações do produto
         var modalContent = `
-  <form id="productForm">
-    @csrf
+  <form id="productForm" enctype="multipart/form-data">
+
     <input type="hidden" name="id" value="${product.id}">
     <div class="row">
       <div class="col-sm-6">
@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
           <label for="modal-categoria">Categoria:</label>
-          <input type="text" value="${product.categoria.NomeCategoria}" placeholder="${product.categoria.NomeCategoria}" id="modal-categoria" name="categoria" class="form-control" >
+          <input type="text" value="${product.categoria}" placeholder="${product.categoria.NomeCategoria}" id="modal-categoria" name="categoria" class="form-control" >
         </div>
         <div class="form-group">
           <label for="modal-qtd">Quantidade:</label>
@@ -87,30 +87,32 @@
 
 
     function submitForm() {
-        // Serialize form data
-        const formData = $("#productForm").serialize();
+      const formData = new FormData($("#productForm")[0]);
 
-        // Make the AJAX request
-        $.ajax({
-            type: "POST",
-            url: "/editProduct", // Replace with the actual URL
-            data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                    'content') // Assuming you have a CSRF token meta tag
-            },
-            success: function(response) {
-                // Handle success
-                // For example, display a success message or update the page content
-                console.log("Form submitted successfully!");
-            },
-            error: function(error) {
-                // Handle errors
-                // For example, display an error message
-                console.error("Error:", error);
-            }
-        });
-    }
+      // Make the AJAX request
+      $.ajax({
+          type: "POST",
+          url: "/editProduct", // Substitua pela URL real
+          data: formData,
+          processData: false, // Não processar os dados (necessário para enviar FormData)
+          contentType: false, // Não definir o tipo de conteúdo (necessário para enviar FormData)
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Assumindo que você tem uma tag meta para o token CSRF
+          },
+          success: function(response) {
+              // Handle success
+              // Por exemplo, exiba uma mensagem de sucesso ou atualize o conteúdo da página
+              closeModal()
+              showSuccessMessage("Produto editado com sucesso!");
+          },
+          error: function(error) {
+              // Handle errors
+              // Por exemplo, exiba uma mensagem de erro
+              closeModal()
+              showSuccessMessage("Erro:", error);
+          }
+      });
+  }
 
 
 
@@ -192,5 +194,34 @@ var productIdToDelete;
     // Chame a função para verificar se a tabela está vazia ao carregar a página.
     document.addEventListener('DOMContentLoaded', checkTableIsEmpty);
 
+    $(document).ready(function () {
+      // Function to filter the rows based on the search query
+      function filterTableRows() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("searchInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("produtoInfo");
+          tr = table.getElementsByClassName("product-row");
 
+          for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td");
+              var foundMatch = false;
+              for (var j = 1; j < td.length; j++) {
+                  txtValue = td[j].textContent || td[j].innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      foundMatch = true;
+                      break;
+                  }
+              }
+              tr[i].style.display = foundMatch ? "" : "none";
+          }
+      }
+
+      // Add an event listener to the search input field
+      $("#searchInput").on("input", function () {
+          filterTableRows();
+      });
+  });
+
+  
     

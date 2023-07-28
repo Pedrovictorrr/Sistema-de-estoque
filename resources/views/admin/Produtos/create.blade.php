@@ -74,30 +74,24 @@
                         <div class="form-check mt-1">
                             <input class="form-check-input" type="radio" name="Validade" id="exampleRadios2"
                                 value="ComValidade">
-                            <label class="form-check-label" for="exampleRadios2">
-                                Data de validade:
-                            </label>
-                            <input name="DataValidade" required type="date" class="form-control col-sm-3" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" disabled>
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Data de validade:
+                                </label>
+                                <input name="DataValidade" required type="date" class="form-control col-sm-3" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
                         </div>
 
                     </div>
                     <div class="col-sm-6 mt-2 mb-3 d-flex justify-content-center">
 
                         <div class="mb-2">
-
                             <!-- Hidden file input -->
-                            <input  id="img-input" type="file" name="imagem" accept=".jpg, .jpeg, .png"
-                                style="display: none;">
+                            <input id="img-input" type="file" name="imagem" accept=".jpg, .jpeg, .png" style="display: none;">
                             <!-- Label for the file input -->
                             <label for="img-input" style="cursor: pointer;" class="text-center">
-                                <!-- Image that serves as a button --><label for="DescricaoDoProduto">Foto do produto:
-                                    (opcional)</label>
+                                <label for="DescricaoDoProduto">Foto do produto: (opcional)</label>
                                 <div class="p-3 rounded-lg border" style="height: 500px; width: 100%;">
-
                                     <img id="preview" src="/img/add-img.png" style="height: 100%; width: 100%;">
-
-
                                 </div>
                             </label>
                         </div>
@@ -108,16 +102,7 @@
                                 Enviar produto
                             </button>
                         </div>
-                        <div class="p-1">
-                            <button class="btn-secondary btn">
-                                Limpar
-                            </button>
-                        </div>
-                        <div class="p-1">
-                            <button class="btn-danger btn">
-                                Cancelar
-                            </button>
-                        </div>
+                        
 
                     </div>
                 </div>
@@ -160,6 +145,56 @@
 
 @section('js')
     <script>
+         // Get the file input element
+    var imgInput = document.getElementById('img-input');
+
+// Add an event listener to the file input to check the file size
+imgInput.addEventListener('change', function() {
+    var fileSize = this.files[0].size; // Size of the selected file in bytes
+
+    // Convert file size to MB
+    var fileSizeMB = fileSize / (1024 * 1024);
+
+    // Check if the file size exceeds 5MB
+    if (fileSizeMB > 5) {
+        // Display an error message
+        alert('A imagem não pode ter mais de 5MB.');
+        // Clear the file input
+        this.value = '';
+    } else {
+        // File size is within the limit, you can display a preview of the image if needed
+        var preview = document.getElementById('preview');
+        var fileReader = new FileReader();
+        fileReader.onload = function() {
+            preview.src = fileReader.result;
+        };
+        fileReader.readAsDataURL(this.files[0]);
+    }
+});
+        $(document).ready(function() {
+    // Get the input element
+    var dataValidadeInput = $('#exampleInputEmail1');
+
+    // Attach an event listener to the input element to check for changes
+    dataValidadeInput.on('change', function() {
+        // Get the selected date from the input
+        var selectedDate = new Date($(this).val());
+
+        // Get the current date
+        var currentDate = new Date();
+
+        // Set the time of the current date to midnight to ignore the time part
+        currentDate.setHours(0, 0, 0, 0);
+
+        // Compare the selected date with the current date
+        if (selectedDate < currentDate) {
+            // If the selected date is earlier than the current date, display an error message
+            alert('A data de validade não pode ser menor que o dia atual.');
+            // You can also clear the input to prevent submission of an invalid date
+            $(this).val('');
+        }
+    });
+});
         // Preview da imagem // 
         function readImage() {
             if (this.files && this.files[0]) {
