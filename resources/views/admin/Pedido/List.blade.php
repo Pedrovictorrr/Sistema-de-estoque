@@ -89,7 +89,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Here, you can display the information of the selected pedido -->
-                    <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p>
+                    <p><strong>Order ID:</strong> <span id="modalId"></span></p>
                     <p><strong>User Name:</strong> <span id="modalUserName"></span></p>
                     <p><strong>Destinatario Name:</strong> <span id="modalDestinatarioName"></span></p>
                     <p><strong>Quantidade de itens:</strong> <span id="modalQTD"></span></p>
@@ -216,6 +216,7 @@
 
                 // Populate the modal fields with the extracted information
                 $("#modalOrderId").text(orderId);
+                $("#modalId").text(orderId);
                 $("#modalUserName").text(userName);
                 $("#modalDestinatarioName").text(destinatarioName);
                 $("#modalQTD").text(qtd);

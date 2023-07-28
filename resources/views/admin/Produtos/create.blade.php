@@ -50,8 +50,10 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label for="ValorDoProduto">Valor: (*)</label>
-                                <input name="Valor" type="number" placeholder="00.00" class="form-control col-sm-6"
-                                    id="ValorDoProduto" placeholder="">
+                                <input name="Valor" type="text" placeholder="00.00" class="form-control col-sm-6" 
+                                id="ValorDoProduto" pattern="^\d+(\.\d{1,2})?$" 
+                                title="Digite um valor válido (por exemplo, 10 ou 10.00)" 
+                                required>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="QuantidadeDoProduto">Quantidade: (*)</label>

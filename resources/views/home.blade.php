@@ -51,47 +51,47 @@
                         <p class="text-center">
                             <strong>Produtos mais pedidos</strong>
                         </p>
-                        <div class="progress-group">
-                            {{ $categoriasMaisApareceram[0]->produto->nome }}
-                            <span class="float-right"><b> {{ $categoriasMaisApareceram[0]->total }}</b></span>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-primary"
-                                    style="width: {{ ($categoriasMaisApareceram[0]->total / $categoriasMaisApareceram[0]->total) * 100 }}%">
+                        @if (!empty($categoriasMaisApareceram[0]) && isset($categoriasMaisApareceram[0]->produto->nome))
+                            <div class="progress-group">
+                                {{ $categoriasMaisApareceram[0]->produto->nome }}
+                                <span class="float-right"><b>{{ $categoriasMaisApareceram[0]->total }}</b></span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-primary" style="width: {{ ($categoriasMaisApareceram[0]->total / $categoriasMaisApareceram[0]->total) * 100 }}%"></div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="progress-group">
-                            {{ $categoriasMaisApareceram[1]->produto->nome }}
-                            <span class="float-right"><b> {{ $categoriasMaisApareceram[1]->total }}</b></span>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-danger"
-                                    style="width:  {{ ($categoriasMaisApareceram[1]->total / $categoriasMaisApareceram[0]->total) * 100 }}%">
+                        @endif
+                    
+                        @if (!empty($categoriasMaisApareceram[1]) && isset($categoriasMaisApareceram[1]->produto->nome))
+                            <div class="progress-group">
+                                {{ $categoriasMaisApareceram[1]->produto->nome }}
+                                <span class="float-right"><b>{{ $categoriasMaisApareceram[1]->total }}</b></span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-danger" style="width: {{ ($categoriasMaisApareceram[1]->total / $categoriasMaisApareceram[0]->total) * 100 }}%"></div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="progress-group">
-                            <span class="progress-text"> {{ $categoriasMaisApareceram[2]->produto->nome }} </span>
-                            <span class="float-right"><b>{{ $categoriasMaisApareceram[2]->total }}</b></span>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-success"
-                                    style="width: {{ ($categoriasMaisApareceram[2]->total / $categoriasMaisApareceram[0]->total) * 100 }}%">
+                        @endif
+                    
+                        @if (!empty($categoriasMaisApareceram[2]) && isset($categoriasMaisApareceram[2]->produto->nome))
+                            <div class="progress-group">
+                                <span class="progress-text">{{ $categoriasMaisApareceram[2]->produto->nome }}</span>
+                                <span class="float-right"><b>{{ $categoriasMaisApareceram[2]->total }}</b></span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-success" style="width: {{ ($categoriasMaisApareceram[2]->total / $categoriasMaisApareceram[0]->total) * 100 }}%"></div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="progress-group">
-                            {{ $categoriasMaisApareceram[3]->produto->nome }}
-                            <span class="float-right"><b>{{ $categoriasMaisApareceram[3]->total }}</b></span>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-warning"
-                                    style="width: {{ ($categoriasMaisApareceram[3]->total / $categoriasMaisApareceram[0]->total) * 100 }}%">
+                        @endif
+                    
+                        @if (!empty($categoriasMaisApareceram[3]) && isset($categoriasMaisApareceram[3]->produto->nome))
+                            <div class="progress-group">
+                                {{ $categoriasMaisApareceram[3]->produto->nome }}
+                                <span class="float-right"><b>{{ $categoriasMaisApareceram[3]->total }}</b></span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-warning" style="width: {{ ($categoriasMaisApareceram[3]->total / $categoriasMaisApareceram[0]->total) * 100 }}%"></div>
                                 </div>
                             </div>
-                        </div>
-
+                        @endif
                     </div>
+                    
 
                 </div>
 

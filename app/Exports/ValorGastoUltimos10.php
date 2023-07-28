@@ -4,7 +4,9 @@ namespace App\Exports;
 
 use App\Invoice;
 use App\Models\ItensPedidos;
+use App\Models\Pedidos;
 use App\Models\Produtos as ModelsProdutos;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -16,29 +18,33 @@ class ValorGastoUltimos10 implements FromView
     */
     public function view(): View
     {   
-        $contagemItens = ItensPedidos::select('id_produto', DB::raw('COUNT(*) as total'))
-        ->groupBy('id_produto')
-        ->orderByDesc('total')
-        ->take(10)
-        ->get();
+        $currentDate = Carbon::now();
 
-    // Array para armazenar os dados dos itens mais frequentes com os nomes dos produtos
-    $itensMaisFrequentes = [];
+        // Obtém a data há 10 dias atrás
+        $tenDaysAgo = Carbon::now()->subDays(10);
 
-    foreach ($contagemItens as $item) {
-        // Acesse o nome do produto através da relação "produto" no modelo ItensPedidos
-        $produto = ModelsProdutos::find($item->id_produto); // Supondo que a chave primária na tabela produtos é "id"
+        // Consulta para obter os pedidos nos últimos 10 dias
+        $pedidos = Pedidos::whereBetween('created_at', [$tenDaysAgo, $currentDate])->get();
 
-        if ($produto) {
-            $itensMaisFrequentes[] = [
-                'id_produto' => $item->id_produto,
-                'nome_produto' => $produto->nome, // Coloque o nome do campo na tabela produtos que contém o nome do produto
-                'total' => $item->total,
-            ];
+        // Array para armazenar o valor total de cada dia
+        $valorTotalPorDia = [];
+
+        // Loop pelos pedidos para calcular o valor total de cada dia
+        foreach ($pedidos as $pedido) {
+            // Obtém a data do pedido formatada apenas com a parte da data (sem a hora)
+            $dataPedido = Carbon::parse($pedido->created_at)->format('d/m/Y');
+
+            // Verifica se a data já está no array, caso contrário, inicia com zero
+            if (!isset($valorTotalPorDia[$dataPedido])) {
+                $valorTotalPorDia[$dataPedido] = 0;
+            }
+
+            // Soma o valor total do pedido ao valor total daquele dia
+            $valorTotalPorDia[$dataPedido] += $pedido->Valor_total;
         }
-    }
-        return view('admin.excel.Relatorio10Produtos', [
-            'itensMaisFrequentes' => $itensMaisFrequentes
+
+        return view('admin.excel.ValorGastoUltimos10', [
+            'valorTotalPorDia' => $valorTotalPorDia
         ]);
     }
 }

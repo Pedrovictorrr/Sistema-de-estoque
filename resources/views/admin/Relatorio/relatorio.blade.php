@@ -19,8 +19,10 @@
                         </div>
                         <canvas id="myChart" height="100px"></canvas>
                         <div class="p-3 text-center">
-                            <a href="{{route('generateExcelRanking10')}}" target="_blank" class="btn btn-success">Donwload Excel</a>
-                            <a href="{{route('generatePDFRanking10')}}" target="_blank" class="btn btn-danger">Donwload PDF</a>
+                            <a href="{{ route('generateExcelRanking10') }}" target="_blank" class="btn btn-success">
+                                Excel</a>
+                            <a href="{{ route('generatePDFRanking10') }}" target="_blank" class="btn btn-danger">
+                                PDF</a>
                         </div>
                     </div>
                 </div>
@@ -31,8 +33,10 @@
                         </div>
                         <canvas id="myChart2" height="100px"></canvas>
                         <div class="p-3 text-center">
-                            <button class="btn btn-success">Donwload Excel</button>
-                            <button class="btn btn-danger">Donwload PDF</button>
+                            <a href="{{ route('generateExcelVAlorTotalGasto') }}" target="_blank"
+                                class="btn btn-success"> Excel</a>
+                            <a href="{{ route('generatePDFVAlorTotalGasto') }}" target="_blank"
+                                class="btn btn-danger"> PDF</a>
                         </div>
                     </div>
                 </div>
@@ -44,9 +48,18 @@
                         placeholder="Buscar por nome do produto ou categoria">
                 </div>
                 <div class="border rounded shadow bg-white p-3 col-md-12">
-                    <div class="border rounded ">
-                        <div class=" bg-light text-center  p-2">
-                            <h3>Produtos em estoque</h3>
+                    <div class="border rounded p-2">
+                        <div class="  text-center row p-1">
+                            <div class="d-flex text-center col justify-content-start">
+                                <h3 class="ml-3">Produtos em estoque</h3>
+                            </div>
+                            <div class="d-flex text-center col justify-content-end">
+                                <a target="_blank" href="{{route('generatePDFProdutosEstoque')}}" class="btn btn-danger mx-1">PDF</a>
+                                <a target="_blank" href="{{route('generateExcelProdutosEstoque')}}" class="btn btn-success mx-1">Excel</a>
+                                <a href="{{route('listar.produtos')}}" class="btn btn-info mx-1">Todos os produtos</a>
+                            </div>
+
+
                         </div>
                         <div class="table-container">
                             <table class="table table-bordered table-hover">

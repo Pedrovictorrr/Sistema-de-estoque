@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProdutosEstoque;
 use App\Exports\Ranking10;
+use App\Exports\ValorGastoUltimos10;
 use App\Models\ItensPedidos;
 use App\Models\Pedidos;
 use App\Models\Produtos;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -100,5 +103,68 @@ class RelatorioController extends Controller
     public function generateExcelRanking10()
     {
        return Excel::download(new Ranking10, 'pedidos'.time().'.xlsx');
+    }
+
+    public function generatePDFVAlorTotalGasto()
+    {
+
+        $currentDate = Carbon::now();
+
+        // Obtém a data há 10 dias atrás
+        $tenDaysAgo = Carbon::now()->subDays(10);
+
+        // Consulta para obter os pedidos nos últimos 10 dias
+        $pedidos = Pedidos::whereBetween('created_at', [$tenDaysAgo, $currentDate])->get();
+
+        // Array para armazenar o valor total de cada dia
+        $valorTotalPorDia = [];
+
+        // Loop pelos pedidos para calcular o valor total de cada dia
+        foreach ($pedidos as $pedido) {
+            // Obtém a data do pedido formatada apenas com a parte da data (sem a hora)
+            $dataPedido = Carbon::parse($pedido->created_at)->format('d/m/Y');
+
+            // Verifica se a data já está no array, caso contrário, inicia com zero
+            if (!isset($valorTotalPorDia[$dataPedido])) {
+                $valorTotalPorDia[$dataPedido] = 0;
+            }
+
+            // Soma o valor total do pedido ao valor total daquele dia
+            $valorTotalPorDia[$dataPedido] += $pedido->Valor_total;
+        }
+
+        // Carrega a view do PDF com os dados
+        $pdf = PDF::loadView('admin.pdf.RelatorioValorGasto', compact('valorTotalPorDia'))
+                ->setPaper('a4');
+
+        // Retorna o PDF para download ou visualização (stream)
+        return $pdf->stream('relatorio_10_produtos.pdf');
+      
+    }
+
+
+    public function generateExcelVAlorTotalGasto()
+    {
+       return Excel::download(new ValorGastoUltimos10, 'ValorGasto10Dias'.time().'.xlsx');
+    }
+
+    public function generatePDFProdutosEstoque()
+    {
+
+        $produtos = Produtos::where('Qtd_Produtos', '>', 0)->get();
+
+        // Carrega a view do PDF com os dados
+        $pdf = PDF::loadView('admin.pdf.ProdutosEmEstoque', compact('produtos'))
+                ->setPaper('a4');
+
+        // Retorna o PDF para download ou visualização (stream)
+        return $pdf->stream('ProdutosEstoque.pdf');
+      
+    }
+
+
+    public function generateExcelProdutosEstoque()
+    {
+       return Excel::download(new ProdutosEstoque, 'Produto_estoque_'.time().'.xlsx');
     }
 }

@@ -46,5 +46,11 @@ Route::get('/ProdutosListExcel', [ProdutosController::class, 'downloadListExcel'
 Route::get('/Relatorios', [RelatorioController::class, 'index'])->name('relatorios');
 Route::get('/generatePDFRanking10', [RelatorioController::class, 'generatePDFRanking10'])->name('generatePDFRanking10');
 Route::get('/generateExcelRanking10', [RelatorioController::class, 'generateExcelRanking10'])->name('generateExcelRanking10');
+Route::get('/generatePDFVAlorTotalGasto', [RelatorioController::class, 'generatePDFVAlorTotalGasto'])->name('generatePDFVAlorTotalGasto');
+Route::get('/generatePDFProdutosEstoque', [RelatorioController::class, 'generatePDFProdutosEstoque'])->name('generatePDFProdutosEstoque');
+Route::get('/generateExcelRanking10', [RelatorioController::class, 'generateExcelRanking10'])->name('generateExcelRanking10');
+Route::get('/generateExcelVAlorTotalGasto', [RelatorioController::class, 'generateExcelVAlorTotalGasto'])->name('generateExcelVAlorTotalGasto');
+Route::get('/generateExcelProdutosEstoque', [RelatorioController::class, 'generateExcelProdutosEstoque'])->name('generateExcelProdutosEstoque');
+
 
 });

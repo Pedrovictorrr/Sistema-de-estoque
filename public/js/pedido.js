@@ -221,3 +221,30 @@ window.addEventListener("click", function (event) {
         closeModal();
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Seleciona o botão "Enviar pedido"
+    const enviarPedidoBtn = document.getElementById("openModalBtn");
+
+    // Seleciona a tabela onde os itens estão sendo listados
+    const produtoTable = document.getElementById("produtoTable");
+
+    // Função para verificar a quantidade de itens na lista e habilitar/desabilitar o botão
+    function verificarQuantidadeItens() {
+        // Conta o número de linhas na tabela, excluindo a última linha do rodapé
+        const numItens = produtoTable.getElementsByTagName("tr").length - 1;
+
+        // Habilita ou desabilita o botão com base no número de itens
+        if (numItens > 1) {
+            enviarPedidoBtn.disabled = false;
+        } else {
+            enviarPedidoBtn.disabled = true;
+        }
+    }
+
+    // Chama a função para verificar a quantidade de itens ao carregar a página
+    verificarQuantidadeItens();
+
+    // Adiciona um event listener para verificar a quantidade de itens sempre que ocorrerem mudanças na lista
+    produtoTable.addEventListener("DOMSubtreeModified", verificarQuantidadeItens);
+});

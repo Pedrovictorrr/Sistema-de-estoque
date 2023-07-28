@@ -19,13 +19,13 @@ class PedidosController extends Controller
         $produtos = Produtos::get();
         $users = User::get();
 
-        return view('admin.Pedido.Create', compact('produtos','users'));
+        return view('admin.Pedido.Create', compact('produtos', 'users'));
     }
 
     public function store(Request $request)
     {
-        $dados = $request->all();
-        $user_id = '1';
+       
+        $user_id = Auth()->user()->id;
         $itens = $request->produtosArray;
         $produtosDecodificados = [];
         $valorTotal = 0;
@@ -70,36 +70,46 @@ class PedidosController extends Controller
         return redirect()->route('show.pedido', ['id' => $pedido]);
     }
 
+
+
     public function show($id)
     {
         $pedido = Pedidos::where('id', $id)->first();
         $itens = ItensPedidos::where('id_pedido', $id)->get();
-        $hashRemetente = Hash::make( $pedido->user);
-        $hashDestinatario = Hash::make( $pedido->destinatario);
+        $hashRemetente = Hash::make($pedido->user);
+        $hashDestinatario = Hash::make($pedido->destinatario);
 
-        return view('admin.Pedido.Show', compact('pedido', 'itens','hashRemetente','hashDestinatario'));
+        return view('admin.Pedido.Show', compact('pedido', 'itens', 'hashRemetente', 'hashDestinatario'));
     }
+
+
 
     public function generatePDf($id)
-    {   
+    {
         $pedido = Pedidos::where('id', $id)->first();
         $itens = ItensPedidos::where('id_pedido', $id)->get();
-        $hashRemetente = Hash::make( $pedido->user);
-        $hashDestinatario = Hash::make( $pedido->destinatario);
-        
-       return Pdf::loadView('admin.pdf.pdf', compact('pedido', 'itens','hashRemetente','hashDestinatario'))->setPaper('a4')->stream();
+        $hashRemetente = Hash::make($pedido->user);
+        $hashDestinatario = Hash::make($pedido->destinatario);
+
+        return Pdf::loadView('admin.pdf.pedidoPdf', compact('pedido', 'itens', 'hashRemetente', 'hashDestinatario'))->setPaper('a4')->stream();
     }
 
+
+
     public function listarPedidos()
-    {   
+    {
         $pedidosQuery = Pedidos::query();
 
         // Use the paginate() method on the query builder to get the paginated results.
         $pedidos = $pedidosQuery->paginate(8);
-       return view('admin.Pedido.List', compact('pedidos'));
+        return view('admin.Pedido.List', compact('pedidos'));
     }
+
+
     public function downloadListExcel()
     {
-       return Excel::download(new ExportsPedidos, 'pedidos'.time().'.xlsx');
+        return Excel::download(new ExportsPedidos, 'pedidos' . time() . '.xlsx');
     }
+
+
 }

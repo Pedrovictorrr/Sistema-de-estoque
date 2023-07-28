@@ -35,6 +35,7 @@
                                 <th scope="col-1">Quantidade</th>
                                 <th scope="col-1">Valor</th>
                                 <th scope="col">Valor em estoque</th>
+                                <th scope="col-1">Validade</th>
                                 <th scope="col-1">Ultima atualização</th>
                                 <th scope="col-1">Ação</th>
                             </tr>
@@ -51,6 +52,11 @@
                                     <td>{{ $produto->Qtd_Produtos }}</td>
                                     <td>R$ {{ number_format($produto->preco, 2, ',', '.') }}</td>
                                     <td>R$ {{ number_format($produto->Qtd_Produtos * $produto->preco, 2, ',', '.') }}</td>
+                                    @if ($produto->data_vencimento)
+                                    <td>{{ $produto->data_vencimento->format('d/m/Y H:i:s') }}</td>
+                                    @else
+                                    <td>Sem validade</td>
+                                    @endif
                                     <td>{{ $produto->updated_at->format('d/m/Y H:i:s') }}</td>
                                     <td class="">
 
