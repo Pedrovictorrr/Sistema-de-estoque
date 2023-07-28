@@ -104,7 +104,7 @@ class ProdutosController extends Controller
    public function listarProdutos()
    {  
       $produtos = Produtos::query();
-      $produtos = $produtos->paginate(10);
+      $produtos = $produtos->paginate(8);
       return view('admin.Produtos.List',compact('produtos'));
    }
 
