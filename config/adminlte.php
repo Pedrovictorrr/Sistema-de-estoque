@@ -253,7 +253,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -319,6 +319,11 @@ return [
         //     'label_color' => 'success',
         // ],
         ['header' => 'Sistema'],
+        [
+            'text' => 'Home',
+            'url'  => '/',
+            'icon' => 'fas fa-fw fa-home',
+        ],
         [
             'text' => 'Fazer pedido',
             'url'  => '/fazer-pedido',
