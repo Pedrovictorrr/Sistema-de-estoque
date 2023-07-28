@@ -15,8 +15,9 @@ class PedidosController extends Controller
     public function index()
     {
         $produtos = Produtos::get();
+        $users = User::get();
 
-        return view('admin.Pedido.Create', compact('produtos'));
+        return view('admin.Pedido.Create', compact('produtos','users'));
     }
 
     public function store(Request $request)
@@ -32,6 +33,7 @@ class PedidosController extends Controller
             'user_id' => $user_id,
             'Valor_total' => '0',
             'Qtd_itens' => '0',
+            'Destinatario' => 1
         ]);
         $pedido = $pedido->id;
 
@@ -51,7 +53,7 @@ class PedidosController extends Controller
                     'Qtd_produtos' => $itens['quantidade'],
                     'status' => '1',
                 ]);
-
+                $destinatario = $itens['Destinatario'];
                 // atualizando quantidade estoque // 
                 $Qtd_Estoque = Produtos::where('id', $itens['id'])->get()->value('Qtd_Produtos');
                 $Qtd_Estoque -= $itens['quantidade'];
@@ -60,7 +62,7 @@ class PedidosController extends Controller
                 // Se o JSON não pôde ser convertido ou estiver vazio, você pode lidar com isso de acordo com suas necessidades (ignorar, registrar erro, etc.)
             }
 
-            Pedidos::where('id', $pedido)->update(['Valor_total' => $valorTotal, 'Qtd_itens' => $Qtd_items]);
+            Pedidos::where('id', $pedido)->update(['Valor_total' => $valorTotal, 'Qtd_itens' => $Qtd_items, 'Destinatario' => $destinatario]);
         }
 
         return redirect()->route('show.pedido', ['id' => $pedido]);

@@ -9,7 +9,7 @@ class Pedidos extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'Valor_total', 'Qtd_itens'];
+    protected $fillable = ['user_id', 'Valor_total', 'Qtd_itens','Destinatario'];
 
     public function itens()
     {

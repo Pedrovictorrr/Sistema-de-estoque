@@ -14,14 +14,18 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('Destinatario');
             $table->decimal('Valor_total', 10, 2);
             $table->integer('Qtd_itens');
             $table->timestamps();
 
             // Foreign key constraint
             $table->foreign('user_id')
-                  ->references('id')->on('users')
-                  ->onDelete('cascade');
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->foreign('Destinatario')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

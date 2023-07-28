@@ -22,14 +22,18 @@ function adicionarProduto() {
                 productId: selectedProductId,
             },
             dataType: "json",
-            success: function(response) {
-                if(response.foto == null)
-                {
+            success: function (response) {
+                if (response.foto == null) {
                     response.foto = '/storage/imagens/product_example.png';
                 }
-               
+
+                var Destinatario = $("#Destinatario").val();
+              
+                console.log(Destinatario)
+       
                 var produto = {
                     id: response.id,
+                    Destinatario: Destinatario,
                     foto: response.foto,
                     produto: response.produto,
                     categoria: response.categoria,
@@ -39,7 +43,7 @@ function adicionarProduto() {
 
                 // Add the product object to the array
                 produtosArray.push(produto)
-           
+
                 atualizarInputHidden();
                 // Add the selected product data to the table
                 var tableBody = $("#produtoTable tbody");
@@ -62,8 +66,8 @@ function adicionarProduto() {
                 $("#inputGroupSelect04").val("");
                 $("#quantidadeSelect").empty().append(new Option("Quantidade máxima", ""));
             },
-            error: function(error) {
-         
+            error: function (error) {
+
             }
         });
     }
@@ -74,7 +78,7 @@ function atualizarInputHidden() {
     $("#produtosArrayInput").empty();
 
     // Create inputs hidden with the values of the array
-    produtosArray.forEach(function(produto, index) {
+    produtosArray.forEach(function (produto, index) {
         var input = "<input type='hidden' name='produtosArray[" + index + "]' value='" + JSON.stringify(
             produto) + "'>";
         $("#produtosArrayInput").append(input);
@@ -85,7 +89,7 @@ function atualizarInputHidden() {
 function produtoJaNaTabela(productId) {
     // Check if the selected product ID is already in the table
     var table = $("#produtoTable");
-    var existingProductIds = table.find("td:first-child").map(function() {
+    var existingProductIds = table.find("td:first-child").map(function () {
         return $(this).text();
     }).get();
     return existingProductIds.includes(productId);
@@ -107,7 +111,7 @@ function updateMaxValue() {
 
         },
         dataType: "json",
-        success: function(response) {
+        success: function (response) {
             console.log(response)
             $("#quantidadeInput").attr("max", response.maxValue);
             var newPlaceholder = "Quantidade máxima: " + response.maxValue;
@@ -125,7 +129,7 @@ function updateMaxValue() {
             }
 
         },
-        error: function(error) {
+        error: function (error) {
             console.error("Error:", error);
         }
     });
@@ -168,8 +172,10 @@ function populateModal() {
     produtoInfoDiv.innerHTML = ''; // Clear the previous content
 
     // Loop through the array and create a list of items
-
-    produtosArray.forEach(function(response) {
+    var Destinatario = $("#Destinatario").text();
+              
+    console.log(Destinatario)
+    produtosArray.forEach(function (response) {
         console.log(response)
         var tableBody = $("#produtoInfo");
         var newRow = "<tr>" +
@@ -181,6 +187,7 @@ function populateModal() {
             "<td>" + response.categoria + "</td>" +
             "<td>" + response.quantidade + "</td>" +
             "<td>R$" + response.valor + "/ por unidade</td>" +
+            "<td>" + Destinatario + "</td>" +
             "</tr>";
         tableBody.append(newRow);
     });
@@ -209,7 +216,7 @@ openModalBtn.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeModal);
 
 // Fecha o modal quando o usuário clica fora da janela modal
-window.addEventListener("click", function(event) {
+window.addEventListener("click", function (event) {
     if (event.target === modal) {
         closeModal();
     }

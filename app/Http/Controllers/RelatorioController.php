@@ -54,7 +54,8 @@ class RelatorioController extends Controller
             }
         }
         $valorTotalPorDiaJson = json_encode($valorTotalPorDia);
-        $produtos = Produtos::get();
+        $produtos = Produtos::query();
+        $produtos = $produtos->paginate(5);
 
         return view('admin.Relatorio.relatorio', compact('itensMaisFrequentesJson', 'valorTotalPorDiaJson','produtos'));
     }

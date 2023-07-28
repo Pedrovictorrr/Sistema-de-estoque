@@ -21,7 +21,7 @@
                     aria-label="Example select with button addon" onchange="updateMaxValue()">
                     <option>Selecione um produto</option>
                     @foreach ($produtos as $produto)
-                        <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
+                        <option value="{{ $produto->id }}">{{ $produto->id }} - {{ $produto->nome }}</option>
                     @endforeach
                 </select>
                 <select id="quantidadeSelect" class="form-control col-md-4">
@@ -32,6 +32,16 @@
                     <button class="btn btn-primary" type="button" onclick="adicionarProduto()">Adicionar</button>
                 </div>
             </div>
+            <div class="form-group p-3 col-md-6">
+                <label for="Destinatario">Destinatario</label>
+                <select name="Destinatario" id="Destinatario" class="form-control" id="Destinatario">
+                    @foreach ($users as $user )
+                        <option value="{{$user->id}}">{{$user->id}} - {{$user->name}}</option> 
+                    @endforeach
+                 
+            
+                </select>
+              </div>
 
 
             <div class="p-3 ">
@@ -73,6 +83,7 @@
                                         <th scope="col-2">Categoria</th>
                                         <th scope="col-1">Quantidade</th>
                                         <th scope="col-1">Valor</th>
+                                        <th scope="col-1">Destinatario</th>
                                     </tr>
                                 </thead>
                                 <tbody id="produtoInfo" class="overflow-auto">

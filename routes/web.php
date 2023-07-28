@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-
+Route::middleware('auth')->group(function () {
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Rotas de pedido // 
@@ -42,3 +42,5 @@ Route::post('/delete-produto', [ProdutosController::class, 'deleteProduto'])->na
 // Rotas de Relatorio // 
 
 Route::get('/Relatorios', [RelatorioController::class, 'index'])->name('relatorios');
+
+});
