@@ -52,7 +52,7 @@ class ProdutosController extends Controller
          // Define um nome único para a imagem usando o timestamp atual
          $nomeImagem = $request->NomeDoProduto . '_' . time() . '.' . $imagem->extension();
          $imagem->storeAs('public/imagens', $nomeImagem);
-         return  '/storage/imagens' . $nomeImagem;
+         return  '/storage/imagens/' . $nomeImagem;
       } else {
          return  'img/add-img.png';
       }
@@ -103,7 +103,8 @@ class ProdutosController extends Controller
    }
    public function listarProdutos()
    {  
-      $produtos = Produtos::get();
+      $produtos = Produtos::query();
+      $produtos = $produtos->paginate(10);
       return view('admin.Produtos.List',compact('produtos'));
    }
 

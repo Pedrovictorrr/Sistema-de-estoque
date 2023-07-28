@@ -13,7 +13,7 @@ class Produtos extends Model
 
     public function categoria()
     {
-        return $this->belongsTo(Categorias::class);
+        return $this->belongsTo(Categorias::class,'categoria_id');
     }
 
     public function itens()

@@ -34,7 +34,7 @@
             </div>
 
 
-            <div class="p-3">
+            <div class="p-3 ">
                 <table id="produtoTable" class="table table-bordered ">
                     <thead>
                         <tr>
@@ -52,46 +52,46 @@
                 </table>
             </div>
             <!-- Modal -->
-            <div  id="myModal" class="modal">
-              
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="produtoModalLabel">Detalhes do Pedido</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+            <div id="myModal" class="modal">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="produtoModalLabel">Detalhes do Pedido</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Aqui vamos exibir as informações do produto -->
+                        <div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col-2">Codigo</th>
+                                        <th scope="col-2">Foto</th>
+                                        <th scope="col-2">Produto</th>
+                                        <th scope="col-2">Categoria</th>
+                                        <th scope="col-1">Quantidade</th>
+                                        <th scope="col-1">Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="produtoInfo" class="overflow-auto">
+
+
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="modal-body">
-                            <!-- Aqui vamos exibir as informações do produto -->
-                            <div >
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col-2">Codigo</th>
-                                            <th scope="col-2">Foto</th>
-                                            <th scope="col-2">Produto</th>
-                                            <th scope="col-2">Categoria</th>
-                                            <th scope="col-1">Quantidade</th>
-                                            <th scope="col-1">Valor</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="produtoInfo" class="overflow-auto">
-                
-                
-                                    </tbody> 
-                                </table>
-                            </div>
-                            <div>
-                                <form action="{{ route('enviar.pedido') }}" method="post">
-                                    @csrf
-                                    <div id="produtosArrayInput"></div>
-                                    <button class="btn btn-primary">Enviar</button>
-                                    <button type="button" onclick="closeModal()" class="btn btn-danger">Cancelar</button>
-                                </form>
-                            </div>
+                        <div>
+                            <form action="{{ route('enviar.pedido') }}" method="post">
+                                @csrf
+                                <div id="produtosArrayInput"></div>
+                                <button class="btn btn-primary">Enviar</button>
+                                <button type="button" onclick="closeModal()" class="btn btn-danger">Cancelar</button>
+                            </form>
                         </div>
                     </div>
-                
+                </div>
+
             </div>
 
             <div class="d-flex justify-content-end">
@@ -112,8 +112,14 @@
                 </div>
 
             </div>
+            <div class="border bg-light p-3 mt-2 rounded">
+                <h5><strong>Obs.: Selecione o produto e adicione a lista.</strong></h5>
+            </div>
         </div>
+        
+
     </div>
+   
 @stop
 
 @section('css')
@@ -127,7 +133,7 @@
             top: 0;
             width: 60%;
             height: 100%;
-         padding-inline: 60px;
+            padding-inline: 60px;
             background-color: rgba(0, 0, 0, 0.5);
         }
 
@@ -137,7 +143,7 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-       
+
         }
 
         .close {
