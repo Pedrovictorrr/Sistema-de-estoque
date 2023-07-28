@@ -44,5 +44,7 @@ Route::get('/ProdutosListExcel', [ProdutosController::class, 'downloadListExcel'
 // Rotas de Relatorio // 
 
 Route::get('/Relatorios', [RelatorioController::class, 'index'])->name('relatorios');
+Route::get('/generatePDFRanking10', [RelatorioController::class, 'generatePDFRanking10'])->name('generatePDFRanking10');
+Route::get('/generateExcelRanking10', [RelatorioController::class, 'generateExcelRanking10'])->name('generateExcelRanking10');
 
 });

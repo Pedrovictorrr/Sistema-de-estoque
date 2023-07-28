@@ -47,7 +47,7 @@
             <div class="p-3 ">
                 <table id="produtoTable" class="table table-bordered ">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col-2">Codigo</th>
                             <th scope="col-2">Foto</th>
                             <th scope="col-2">Produto</th>
@@ -58,7 +58,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                     </tbody>
+                    <tfoot>
+                        <tr class="text-center">
+                            <td>+</td>
+                            <td>+</td>
+                            <td>+</td>
+                            <td>+</td>
+                            <td>+</td>
+                            <td>+</td>
+                            <td>+</td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             <!-- Modal -->
@@ -73,7 +85,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- Aqui vamos exibir as informações do produto -->
-                        <div>
+                        <div class="table-container">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -111,16 +123,7 @@
                         Enviar pedido
                     </button>
                 </div>
-                <div class="p-1">
-                    <button class="btn-secondary btn">
-                        Limpar
-                    </button>
-                </div>
-                <div class="p-1">
-                    <button class="btn-danger btn">
-                        Cancelar
-                    </button>
-                </div>
+              
 
             </div>
             <div class="border bg-light p-3 mt-2 rounded">
@@ -134,6 +137,15 @@
 @stop
 
 @section('css')
+<style>
+    .table-container {
+        padding: 20px;
+        max-height: 600px;
+        /* Defina a altura máxima que desejar */
+        overflow-y: auto;
+        /* Adiciona um scroll vertical quando necessário */
+    }
+</style>
     <style>
         /* Estilização do modal */
         .modal {
@@ -150,7 +162,7 @@
 
         .modal-content {
             background-color: white;
-            margin: 15% auto;
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;

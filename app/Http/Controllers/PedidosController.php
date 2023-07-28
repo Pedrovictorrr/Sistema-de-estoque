@@ -73,21 +73,21 @@ class PedidosController extends Controller
     public function show($id)
     {
         $pedido = Pedidos::where('id', $id)->first();
-        $user = User::where('id', $pedido->user_id)->first();
         $itens = ItensPedidos::where('id_pedido', $id)->get();
-        $hash = Hash::make($user);
-        
+        $hashRemetente = Hash::make( $pedido->user);
+        $hashDestinatario = Hash::make( $pedido->destinatario);
 
-        return view('admin.Pedido.Show', compact('pedido', 'user', 'itens','hash'));
+        return view('admin.Pedido.Show', compact('pedido', 'itens','hashRemetente','hashDestinatario'));
     }
 
     public function generatePDf($id)
     {   
         $pedido = Pedidos::where('id', $id)->first();
-        $user = User::where('id', $pedido->user_id)->first();
         $itens = ItensPedidos::where('id_pedido', $id)->get();
-        $hash = Hash::make($user);
-       return Pdf::loadView('admin.pdf.pdf', compact('pedido', 'user', 'itens','hash'))->setPaper('a4')->stream();
+        $hashRemetente = Hash::make( $pedido->user);
+        $hashDestinatario = Hash::make( $pedido->destinatario);
+        
+       return Pdf::loadView('admin.pdf.pdf', compact('pedido', 'itens','hashRemetente','hashDestinatario'))->setPaper('a4')->stream();
     }
 
     public function listarPedidos()

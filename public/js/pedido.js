@@ -47,7 +47,7 @@ function adicionarProduto() {
                 atualizarInputHidden();
                 // Add the selected product data to the table
                 var tableBody = $("#produtoTable tbody");
-                var newRow = "<tr>" +
+                var newRow = "<tr class='text-center'>" +
 
                     "<td>" + response.id + "</td>" +
                     "<td>" + "<img height='50px' height='50px' src='" + response.foto +

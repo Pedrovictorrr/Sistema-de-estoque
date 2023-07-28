@@ -17,10 +17,10 @@
                         <div class="p-3 text-center">
                             <h5>Ranking dos 10 produtos com mais saída do sistema:</h5>
                         </div>
-                        <canvas id="myChart"></canvas>
+                        <canvas id="myChart" height="100px"></canvas>
                         <div class="p-3 text-center">
-                            <button class="btn btn-success">Donwload Excel</button>
-                            <button  class="btn btn-danger">Donwload PDF</button>
+                            <a href="{{route('generateExcelRanking10')}}" target="_blank" class="btn btn-success">Donwload Excel</a>
+                            <a href="{{route('generatePDFRanking10')}}" target="_blank" class="btn btn-danger">Donwload PDF</a>
                         </div>
                     </div>
                 </div>
@@ -29,76 +29,73 @@
                         <div class="p-3 text-center">
                             <h5>Valor gasto nos ultimos 10 dias:</h5>
                         </div>
-                        <canvas id="myChart2"></canvas>
+                        <canvas id="myChart2" height="100px"></canvas>
                         <div class="p-3 text-center">
                             <button class="btn btn-success">Donwload Excel</button>
-                            <button  class="btn btn-danger">Donwload PDF</button>
+                            <button class="btn btn-danger">Donwload PDF</button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="row p-4">
+                <div class="mb-2  col-md-4">
+                    <input type="text" class="form-control" id="searchInput"
+                        placeholder="Buscar por nome do produto ou categoria">
+                </div>
                 <div class="border rounded shadow bg-white p-3 col-md-12">
-                    <div class="border rounded">
+                    <div class="border rounded ">
                         <div class=" bg-light text-center  p-2">
                             <h3>Produtos em estoque</h3>
                         </div>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Cod.</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Categoria</th>
-                                    <th scope="col">Quantidade</th>
-                                    <th scope="col">Valor por unidade</th>
-                                    <th scope="col">Valor em estoque</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($produtos as $produto)
-                                <tr>
-                                    <th scope="row">{{$produto->id}}</th>
-                                    <td>{{$produto->nome}}</td>
-                                    <td>{{$produto->categoria->NomeCategoria}}</td>
-                                    <td>{{$produto->Qtd_Produtos}}</td>
-                                    <td>R$ {{ number_format( $produto->preco, 2, ',', '.') }}</td>
-                                    <td>R$ {{ number_format($produto->Qtd_Produtos * $produto->preco, 2, ',', '.') }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="table-container">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col">Cod.</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Categoria</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Valor por unidade</th>
+                                        <th scope="col">Valor em estoque</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="produtoInfo" class="overflow-auto produto-list mb-2">
+                                    @foreach ($produtos as $produto)
+                                        <tr class="text-center product-row">
+                                            <th scope="row">{{ $produto->id }}</th>
+                                            <td class="product-name">{{ $produto->nome }}</td>
+                                            <td class="product-category">{{ $produto->categoria->NomeCategoria }}</td>
+                                            <td>{{ $produto->Qtd_Produtos }}</td>
+                                            <td>R$ {{ number_format($produto->preco, 2, ',', '.') }}</td>
+                                            <td>R$
+                                                {{ number_format($produto->Qtd_Produtos * $produto->preco, 2, ',', '.') }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="p-1">
-                <a href="{{ $produtos->previousPageUrl() }}" class="btn btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="fill: white" height="1em" viewBox="0 0 448 512">
-                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <path
-                            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                    </svg>
-                </a>
-            </div>
-            <div class="p-1">
-                 <a href="{{ $produtos->nextPageUrl() }}" class="btn btn-primary">
-                <svg style="fill: white" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <path
-                        d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-                </svg>
-            </a> 
-            </div>
-            <!-- a Tag for next page -->
-          
-        </div>
+
     </div>
 @stop
 
 @section('css')
-
+    <style>
+        .table-container {
+            padding: 20px;
+            max-height: 350px;
+            /* Defina a altura máxima que desejar */
+            overflow-y: auto;
+            /* Adiciona um scroll vertical quando necessário */
+        }
+    </style>
 
 @stop
 
@@ -125,7 +122,7 @@
             datasets: [{
                 label: 'Unidade',
                 borderColor: '#36A2EB',
-      backgroundColor: '#9BD0F5',
+                backgroundColor: '#9BD0F5',
                 data: [...valoresMaisFrequentes], // Adicionar os valores dos itens mais frequentes aqui
             }]
         };
@@ -154,7 +151,7 @@
             datasets: [{
                 label: 'R$',
                 borderColor: '#36A2EB',
-      backgroundColor: '#9BD0F5',
+                backgroundColor: '#9BD0F5',
                 data: valoresPorDia,
             }]
         };
@@ -181,5 +178,27 @@
             document.getElementById('myChart2'),
             config2
         );
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Handle keyup event on the search input
+            $("#searchInput").keyup(function() {
+                // Get the search query and convert it to lowercase for case-insensitive filtering
+                var query = $(this).val().toLowerCase();
+
+                // Loop through each row in the table
+                $(".product-row").each(function() {
+                    var productName = $(this).find(".product-name").text().toLowerCase();
+                    var productCategory = $(this).find(".product-category").text().toLowerCase();
+
+                    // Show/hide the row based on the search query
+                    if (productName.includes(query) || productCategory.includes(query)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
     </script>
 @stop

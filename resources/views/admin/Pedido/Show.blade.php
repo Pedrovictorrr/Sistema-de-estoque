@@ -17,10 +17,16 @@
         <div class=" border shadow bg-white p-3">
             <h4>Detalhes do pedido:</h4>
 
-            <p><strong>Pedido feito por:</strong> {{ $user->name }}<br>
-                <strong>Email:</strong> {{ $user->email }}<br>
-                <strong>Criado em:</strong> {{ $pedido->created_at }}<br>
-                <strong>Hash do usuario:</strong> {{ $hash }}<br>
+            <p><strong>Remetente:</strong> {{ $pedido->user->name }}<br>
+                <strong>Email:</strong> {{ $pedido->user->email }}<br>
+                <strong>Criado em:</strong> {{ $pedido->created_at->format('d/m/Y H:i:s') }}<br>
+                <strong>Hash do usuario:</strong> {{ $hashRemetente }}<br>
+            </p>
+
+            <p><strong>Destinatario:</strong> {{ $pedido->destinatario->name }}<br>
+                <strong>Email:</strong> {{ $pedido->destinatario->email }}<br>
+                <strong>Criado em:</strong> {{ $pedido->created_at->format('d/m/Y H:i:s') }}<br>
+                <strong>Hash do usuario:</strong> {{ $hashDestinatario }}<br>
             </p>
             <h4>Produtos:</h4>
             <table class="table">
@@ -39,8 +45,8 @@
                             <th scope="row">{{$item->produto->id}}</th>
                             <td>{{$item->produto->nome}}</td>
                             <td>{{$item->Qtd_produtos}}</td>
-                            <td>R${{($item->produto->preco) }}</td>
-                            <td>R${{ (float) ($item->produto->preco * $item->Qtd_produtos) }}.00</td>
+                            <td>R$ {{ number_format($item->produto->preco, 2, ',', '.') }}</td>
+                            <td>R$ {{ number_format($item->Qtd_produtos * $item->produto->preco, 2, ',', '.') }}</td>
                         </tr>
                     @endforeach
                     <tr>
@@ -48,7 +54,7 @@
                         <td></td>
                         <td></td>
                         <td ></td>
-                        <td class="border"><strong>Total:</strong> R${{ $pedido->Valor_total }}</td>
+                        <td class="border"><strong>Total:</strong> R${{ number_format($pedido->Valor_total, 2, ',', '.') }}</td>
                     </tr>
 
 
