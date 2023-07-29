@@ -24,7 +24,7 @@ Tabela "pedidos":
 
 - A tabela "pedidos" possui dois campos relacionados a um usuário: "destinatario" e "user_id", ambos são chaves estrangeiras (FKs) relacionadas à tabela "users".
 - Um pedido está associado a apenas um usuário (como destinatário).
-- Um pedido está associado a apenas um usuário (como remetente 'user_id').
+- Um pedido está associado a apenas um usuário (como remetente, 'user_id').
 - Um usuário pode ter vários pedidos.
 
 Resumindo:
