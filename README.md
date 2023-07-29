@@ -42,9 +42,10 @@ DB_PASSWORD=[SUA_SENHA_DO_BANCO_DE_DADOS]
 php artisan migrate
 ```
 <br>
-<strong>obs.:Ele vai perguntar se quer criar um novo banco, você digita 'yes'.</strong>
+obs.:Ele vai perguntar se quer criar um novo banco, você digita 'yes'.
+<br><br>
 
-Vamos alimentar esse banco de dados com alguns itens aleatorios e adicionar os usuarios com seeders:
+<strong>Vamos alimentar esse banco de dados com alguns itens aleatorios e adicionar os usuarios com seeders:</strong>
 
 ```bash
 php artisan db:seed
