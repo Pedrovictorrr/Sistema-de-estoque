@@ -29,12 +29,13 @@ DB_USERNAME=root
 DB_PASSWORD=[SUA_SENHA_DO_BANCO_DE_DADOS]
 ```
 
-Depois do banco de dados configurado, vamos rodar a migrate:<br>
-<strong>Ele vai perguntar se quer criar um novo banco, você digita 'yes'</strong>
+Depois do banco de dados configurado, vamos rodar a migrate:
 
 ```bash
 php artisan migrate
 ```
+<br>
+<strong>obs.:Ele vai perguntar se quer criar um novo banco, você digita 'yes'.</strong>
 
 Vamos alimentar esse banco de dados com alguns itens aleatorios com seeders:
 
@@ -42,7 +43,7 @@ Vamos alimentar esse banco de dados com alguns itens aleatorios com seeders:
 php artisan db:seed
 ```
 
-Diagrama:
+Modelagem de dados (Diagrama):
 
 Relação das tabelas no banco de dados:
 
