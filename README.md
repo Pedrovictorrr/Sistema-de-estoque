@@ -18,8 +18,8 @@ composer install
 cp .env.example .env
 ```
 
-<strong>Gerar a chave de criptografia:<br>
-O Laravel exige uma chave de criptografia para proteger dados sensíveis. Execute o seguinte comando para gerar uma nova chave no arquivo .env:</strong>
+<strong>Gerar a chave de criptografia:<br></strong>
+O Laravel exige uma chave de criptografia para proteger dados sensíveis. Execute o seguinte comando para gerar uma nova chave no arquivo .env:
 
 ```bash
 php artisan key:generate
