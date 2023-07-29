@@ -57,6 +57,12 @@ php artisan db:seed
 php artisan serve
 ```
 
+<strong>Url de desenvolvimento:</strong>
+
+```bash
+http://127.0.0.1:8000/
+```
+
 ## Telas do sistema:
 | Login |  Home | Fazer pedido |
 | -------- | -------- | -------- |
