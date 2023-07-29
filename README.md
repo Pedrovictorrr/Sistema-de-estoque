@@ -1,31 +1,31 @@
 # W2O
 ## Como começar:
 
-Passo a passo:<br>
+<strong>Passo a passo:<br></strong>
 
-Clonar o repositorio do projeto para sua maquina:
+<strong>Clonar o repositorio do projeto para sua maquina:</strong>
 ```bash
 git clone https://github.com/Pedrovictorrr/W2O.git
 ```
-Instalar dependencias composer:
+<strong>Instalar dependencias composer:</strong>
 ```bash
 composer install
 ```
 
-Fazer copia do arquivo .env:
+<strong>Fazer copia do arquivo .env:</strong>
 
 ```bash
 cp .env.example .env
 ```
 
-Gerar a chave de criptografia:
-O Laravel exige uma chave de criptografia para proteger dados sensíveis. Execute o seguinte comando para gerar uma nova chave no arquivo .env:
+<strong>Gerar a chave de criptografia:<br>
+O Laravel exige uma chave de criptografia para proteger dados sensíveis. Execute o seguinte comando para gerar uma nova chave no arquivo .env:</strong>
 
 ```bash
 php artisan key:generate
 ```
 
-Alterar campos de do banco de dados para algum banco de dados mysql fica da sua escolha o nome aqui esta um exemplo (local):
+<strong>Alterar campos de do banco de dados para algum banco de dados mysql fica da sua escolha o nome aqui esta um exemplo (local):</strong>
 
 ```bash
 DB_CONNECTION=mysql
@@ -36,7 +36,7 @@ DB_USERNAME=root
 DB_PASSWORD=[SUA_SENHA_DO_BANCO_DE_DADOS]
 ```
 
-Depois do banco de dados configurado, vamos rodar a migrate:
+<strong>Depois do banco de dados configurado, vamos rodar a migrate:</strong>
 
 ```bash
 php artisan migrate
@@ -50,7 +50,7 @@ Vamos alimentar esse banco de dados com alguns itens aleatorios e adicionar os u
 php artisan db:seed
 ```
 
-Modelagem de dados (Diagrama):
+## Modelagem de dados (Diagrama):
 
 Relação das tabelas no banco de dados:
 
