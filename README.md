@@ -29,7 +29,6 @@ php artisan key:generate
 ```
 
 <strong>linkar storage:<br></strong>
-O Laravel exige uma chave de criptografia para proteger dados sensíveis. Execute o seguinte comando para gerar uma nova chave no arquivo .env:
 
 ```bash
 php artisan storage:link
