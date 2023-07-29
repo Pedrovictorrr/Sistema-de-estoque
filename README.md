@@ -37,7 +37,7 @@ php artisan migrate
 <br>
 <strong>obs.:Ele vai perguntar se quer criar um novo banco, você digita 'yes'.</strong>
 
-Vamos alimentar esse banco de dados com alguns itens aleatorios com seeders:
+Vamos alimentar esse banco de dados com alguns itens aleatorios e adicionar os usuarios com seeders:
 
 ```bash
 php artisan db:seed
