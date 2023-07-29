@@ -51,7 +51,13 @@ obs.:Ele vai perguntar se quer criar um novo banco, você digita 'yes'.
 php artisan db:seed
 ```
 
-## Print das telas do sistema:
+<strong>Agora é só rodar o servidor:</strong>
+
+```bash
+php artisan serve
+```
+
+## Telas do sistema:
 | Login |  Home | Fazer pedido |
 | -------- | -------- | -------- |
 | ![Imagem 1](https://github.com/Pedrovictorrr/W2O/assets/82172897/6f2abff2-8888-4c76-b245-8fc4af7402ed) | ![Imagem 2](https://github.com/Pedrovictorrr/W2O/assets/82172897/b51a44a6-5d81-48a6-9b88-785cb5a7380f) | ![Imagem 3](https://github.com/Pedrovictorrr/W2O/assets/82172897/766b274b-249f-426a-8ac4-c2e117b417de) |
