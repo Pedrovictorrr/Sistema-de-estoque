@@ -1,6 +1,7 @@
 # W2O
 
 <p>Realizei a implementação do Projeto de Controle de Estoque e Gerenciamento de Categorias com sucesso. Fui responsável por desenvolver uma solução eficiente que possibilita o registro e rastreamento das movimentações de entrada e saída de produtos, além de organizar os itens em categorias para simplificar a gestão.</p>
+
 ## Como começar:
 
 <strong>Passo a passo:<br></strong>
