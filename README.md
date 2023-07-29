@@ -28,7 +28,7 @@ O Laravel exige uma chave de criptografia para proteger dados sensíveis. Execut
 php artisan key:generate
 ```
 
-<strong>linkar storage:<br></strong>
+<strong>Linkar Storage com public:<br></strong>
 
 ```bash
 php artisan storage:link
