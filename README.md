@@ -1,4 +1,6 @@
 # W2O
+
+<p>Realizei a implementação do Projeto de Controle de Estoque e Gerenciamento de Categorias com sucesso. Fui responsável por desenvolver uma solução eficiente que possibilita o registro e rastreamento das movimentações de entrada e saída de produtos, além de organizar os itens em categorias para simplificar a gestão.</p>
 ## Como começar:
 
 <strong>Passo a passo:<br></strong>
@@ -114,4 +116,7 @@ A tabela "itensPedidos" (supondo que seja uma tabela de pedidos) se relaciona co
 A tabela "pedidos" se relaciona com a tabela "users" para indicar o destinatário e o usuário associado ao pedido.
 
 ![image](https://github.com/Pedrovictorrr/W2O/assets/82172897/1d613b15-f13e-465d-b1a3-8b418571b154)
+
+
+
 
