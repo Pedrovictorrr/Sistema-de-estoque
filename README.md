@@ -1,4 +1,45 @@
 # W2O
+## Como começar:
+
+Passo a passo:<br>
+
+Clonar o repositorio do React Nextjs para sua maquina:
+```bash
+git clone https://github.com/Pedrovictorrr/W2O.git
+```
+Instalar dependencias composer:
+```bash
+composer install
+```
+
+Fazer copia do arquivo .env:
+
+```bash
+cp .env.example .env
+```
+
+Alterar campos de do banco de dados para algum banco de dados mysql fica da sua escolha o nome aqui esta um exemplo (local):
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=W20-Teste
+DB_USERNAME=root
+DB_PASSWORD=[SUA_SENHA_DO_BANCO_DE_DADOS]
+```
+
+Depois do banco de dados configurado, vamos rodar a migrate:
+
+```bash
+php artisan migrate
+```
+
+Vamos alimentar esse banco de dados com alguns itens aleatorios com seeders:
+
+```bash
+php artisan db:seed
+```
 
 Diagrama:
 
