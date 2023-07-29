@@ -3,7 +3,7 @@
 
 Passo a passo:<br>
 
-Clonar o repositorio do React Nextjs para sua maquina:
+Clonar o repositorio do projeto para sua maquina:
 ```bash
 git clone https://github.com/Pedrovictorrr/W2O.git
 ```
