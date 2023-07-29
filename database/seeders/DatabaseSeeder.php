@@ -19,6 +19,33 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
+          
+        User::factory()->create([
+            'name' => 'Teste User',
+            'email' => 'teste@teste.com',
+            'password' => bcrypt('123456'),
+        ]);
+        User::factory()->create([
+            'name' => 'W2O teste',
+            'email' => 'w2o@teste.com',
+            'password' => bcrypt('123456'),
+        ]);
+        User::factory()->create([
+            'name' => 'Joao teste',
+            'email' => 'joao@teste.com',
+            'password' => bcrypt('123456'),
+        ]);
+        User::factory()->create([
+            'name' => 'Pedro teste',
+            'email' => 'pedro@teste.com',
+            'password' => bcrypt('123456'),
+        ]);
+        User::factory()->create([
+            'name' => 'Carlos teste',
+            'email' => 'carlos@teste.com',
+            'password' => bcrypt('123456'),
+        ]);
+
         // Chamada para o seeder de categorias que você criou
         $this->call(CategoriasTableSeeder::class);
         // Chamada para o seeder de produtos que você criou
@@ -30,9 +57,7 @@ class DatabaseSeeder extends Seeder
 
 
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+    
+        
     }
 }

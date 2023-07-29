@@ -15,10 +15,11 @@
                 <div class="col-md-6 p-3">
                     <div class="p-2 border bg-white shadow rounded">
                         <div class="p-3 text-center">
-                            <h5>Ranking dos 10 produtos com mais saída do sistema:</h5>
+                            <h5>10 produtos com mais saída do sistema:</h5>
                         </div>
                         <canvas id="myChart" height="100px"></canvas>
                         <div class="p-3 text-center">
+                            <h5>Relatório 10 produtos com mais saída do sistema:</h5>
                             <a href="{{ route('generateExcelRanking10') }}" target="_blank" class="btn btn-success">
                                 Excel</a>
                             <a href="{{ route('generatePDFRanking10') }}" target="_blank" class="btn btn-danger">
@@ -29,10 +30,11 @@
                 <div class="col-md-6 p-3">
                     <div class="p-2 border bg-white shadow rounded">
                         <div class="p-3 text-center">
-                            <h5>Valor gasto nos ultimos 10 dias:</h5>
+                            <h5>Valor gasto nas datas:</h5>
                         </div>
                         <canvas id="myChart2" height="100px"></canvas>
-                        <div class="p-3 text-center">
+                       
+                        <div class="p-3 text-center"> <h5>Valor gasto nos ultimos 10 dias:</h5>
                             <a href="{{ route('generateExcelVAlorTotalGasto') }}" target="_blank"
                                 class="btn btn-success"> Excel</a>
                             <a href="{{ route('generatePDFVAlorTotalGasto') }}" target="_blank"

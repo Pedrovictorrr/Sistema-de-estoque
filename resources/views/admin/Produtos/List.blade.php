@@ -86,7 +86,7 @@
                         <strong>Donwload da planilha: </strong>
                         <a target="_blank" href="{{ route('downloadListExcel.produtos') }}" class="btn btn-success">
                             Excel</a>
-                        <button class="btn btn-danger"> PDF</button>
+                        
                     </div>
 
                 </div>

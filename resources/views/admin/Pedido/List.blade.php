@@ -69,7 +69,7 @@
                 <div class="col-6">
                     <strong>Donwload da planilha: </strong>
                     <a href="{{ route('downloadListExcel.Pedidos') }}" target="_blank" class="btn btn-success"> Excel</a>
-                    <button class="btn btn-danger"> PDF</button>
+                    
                 </div>
              
             </div>
