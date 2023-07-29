@@ -54,7 +54,6 @@ php artisan db:seed
 | -------- | -------- | -------- |
 | ![Imagem 1](https://github.com/Pedrovictorrr/W2O/assets/82172897/6f2abff2-8888-4c76-b245-8fc4af7402ed) | ![Imagem 2](https://github.com/Pedrovictorrr/W2O/assets/82172897/b51a44a6-5d81-48a6-9b88-785cb5a7380f) | ![Imagem 3](https://github.com/Pedrovictorrr/W2O/assets/82172897/766b274b-249f-426a-8ac4-c2e117b417de) |
 | Imagem 4 | Imagem 5 | Imagem 6 |
-| -------- | -------- | -------- |
 | ![Imagem 4](https://github.com/Pedrovictorrr/W2O/assets/82172897/5b858ef3-5ab9-4c6b-bf1d-77ecddc9fc3f) | ![Imagem 5](https://github.com/Pedrovictorrr/W2O/assets/82172897/776f9a70-648d-42fb-9c60-ef42f2038068) | ![Imagem 6](https://github.com/Pedrovictorrr/W2O/assets/82172897/522dcc20-d289-4ee7-8a82-dfa7626049cd) |
 | ![Imagem 7](https://github.com/Pedrovictorrr/W2O/assets/82172897/3aa07509-5ba1-4b74-a69b-4d674d31b77d) |  |  |
 
