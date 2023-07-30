@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\RelatorioController;
@@ -52,5 +53,12 @@ Route::get('/generateExcelRanking10', [RelatorioController::class, 'generateExce
 Route::get('/generateExcelVAlorTotalGasto', [RelatorioController::class, 'generateExcelVAlorTotalGasto'])->name('generateExcelVAlorTotalGasto');
 Route::get('/generateExcelProdutosEstoque', [RelatorioController::class, 'generateExcelProdutosEstoque'])->name('generateExcelProdutosEstoque');
 
+
+// Rotas de categorias // 
+
+Route::get('categorias/list',[CategoriasController::class , 'listarCategorias'])->name('listarCategorias');
+Route::post('categorias/create',[CategoriasController::class , 'createCategorias'])->name('createCategorias');
+Route::post('categorias/edit',[CategoriasController::class , 'editCategorias'])->name('editCategorias');
+Route::post('categorias/delete',[CategoriasController::class , 'deleteCategorias'])->name('deleteCategorias');
 
 });

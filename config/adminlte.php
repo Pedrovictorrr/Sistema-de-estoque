@@ -335,76 +335,35 @@ return [
             'icon' => 'fas fa-fw fa-plus',
         ],
         [
-            'text' => 'Listar Produtos',
-            'url'  => '/listarProdutos',
-            'icon' => 'fas fa-fw fa-list',
-            
-        ],
-        [
-            'text' => 'Listar Pedidos',
-            'url'  => '/listarPedidos',
-            'icon' => 'fas fa-fw fa-list',
-            
+            'text'    => 'Listas',
+            'icon'    => 'fas fa-fw fa-inbox',
+            'submenu' => [
+                [
+                    'text' => ' Pedidos',
+                    'url'  => '/listarPedidos',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+                [
+                    'text' => ' Produtos',
+                    'url'  => '/listarProdutos',
+                    'icon' => 'fas fa-fw fa-list',
+                    
+                ],
+                [
+                    'text' => ' Categorias',
+                    'url'  => '/categorias/list',
+                    'icon' => 'fas fa-fw fa-list',
+                ],
+              
+            ],
+
         ],
         [
             'text' => 'Relatórios',
             'url'  => '/Relatorios',
             'icon' => 'fas fa-fw fa-chart-pie',
         ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
+       
     ],
 
     /*

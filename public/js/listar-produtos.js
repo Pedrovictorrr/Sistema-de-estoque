@@ -18,10 +18,7 @@
           <label for="modal-nome">Produto:</label>
           <input type="text" value="${product.nome}" placeholder="${product.nome}" id="modal-nome" name="nome" class="form-control" >
         </div>
-        <div class="form-group">
-          <label for="modal-categoria">Categoria:</label>
-          <input type="text" value="${product.categoria}" placeholder="${product.categoria.NomeCategoria}" id="modal-categoria" name="categoria" class="form-control" >
-        </div>
+       
         <div class="form-group">
           <label for="modal-qtd">Quantidade:</label>
           <input type="number" value="${product.Qtd_Produtos}" placeholder="${product.Qtd_Produtos}" id="modal-qtd" name="qtd" class="form-control">
