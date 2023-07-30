@@ -22,13 +22,13 @@
                             <input type="hidden" id="csrfToken" name="_token" value="{{ csrf_token() }}">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nome da categoria:</label>
-                            
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Nome da categoria">
                             </div>
                             <div class="form-group">
 
                                 <label for="exampleFormControlSelect2">Adicionar produtos a categoria:</label>
-                                <input type="text" class="form-control mb-3" id="searchInput"
-                                    placeholder="Buscar por nome do remetente, destinatario ou codigo do pedido">
+                               
                                 <div class="">
                                     <ul class="list-group list-group-flush table-container1 border">
                                     
