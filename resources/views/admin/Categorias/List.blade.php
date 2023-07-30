@@ -28,8 +28,9 @@
                             <div class="form-group">
 
                                 <label for="exampleFormControlSelect2">Adicionar produtos a categoria:</label>
-                               
-                                <div  class="table-container1 border" id="produtoList">
+                                <input type="text" class="form-control mb-3" id="searchInput"
+                                    placeholder="Buscar por nome do remetente, destinatario ou codigo do pedido">
+                                <div class="">
                                     <ul class="list-group list-group-flush table-container1 border">
                                     
                                         @if (count($produtos) > 0)
@@ -79,7 +80,8 @@
                         </div>
 
                         <div class="mb-3 mt-1 col-md-6">
-                           
+                            <input type="text" class="form-control" id="searchInput"
+                                placeholder="Buscar por nome do remetente, destinatario ou codigo do pedido">
 
                         </div>
                     </div>
@@ -169,31 +171,29 @@
                             </div>
                             <label for="exampleFormControlSelect2">Adicionar produtos a categoria:</label>
                             <ul class="list-group list-group-flush table-container1 border">
-                                @foreach ($categorias as $categoria)
-                                <tr class="text-center">
-                                    <td scope="col">{{ $categoria->id }}</td>
-                                    <td scope="col">{{ $categoria->NomeCategoria }}</td>
-                                    <td scope="col">{{ $categoria->produtos->count() }}</td>
-                                    <td scope="col">
-                                        @if ($categoria->produtos->count() > 0)
-                                            R${{ number_format($categoria->produtos->sum('preco') / $categoria->produtos->count(), 2, ',', '') }}
-                                        @else
-                                            R$ 0
-                                            <!-- Ou qualquer mensagem que você queira exibir quando não houver produtos -->
-                                        @endif
-                                    </td>
-                                    <th class="">
-                                        <button class="btn btn-primary open-modal"
-                                            data-id="{{ $categoria->id }}" data-nome="{{ $categoria->NomeCategoria }}"
-                                            data-num-produtos="{{ $categoria->produtos->count() }}"
-                                            data-preco-medio=" @if ($categoria->produtos->count() > 0) {{ number_format($categoria->produtos->sum('preco') / $categoria->produtos->count(), 2, ',', '') }}
+                                @if (count($produtos) > 0)
+                                @foreach ($produtos as $produto)
+                                    @if ($produto->nome && $produto->categoria && $produto->categoria->NomeCategoria)
+                                        <li class="list-group-item">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $produto->id }}" value="{{ $produto->id }}">
+                                                <label class="form-check-label" for="inlineCheckbox{{ $produto->id }}">{{ $produto->id }} - {{ $produto->nome }} - [{{ $produto->categoria->NomeCategoria }}]</label>
+                                            </div>
+                                        </li>
                                     @else
-                                        0
-                                        <!-- Ou qualquer mensagem que você queira exibir quando não houver produtos --> @endif">Editar</button>
-                                        <button class="btn btn-danger btn-excluir" data-id="{{ $categoria->id }}">Excluir</button>
-                                    </th>
-                                </tr>
-                            @endforeach
+                                        <li class="list-group-item">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $produto->id }}" value="{{ $produto->id }}" disabled>
+                                                <label class="form-check-label" for="inlineCheckbox{{ $produto->id }}">Não existe</label>
+                                            </div>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @else
+                                <li class="list-group-item">
+                                    Nenhum produto encontrado.
+                                </li>
+                            @endif
                             </ul>
                         </div>
                         <div class="modal-footer">
