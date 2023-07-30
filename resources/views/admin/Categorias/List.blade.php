@@ -28,9 +28,8 @@
                             <div class="form-group">
 
                                 <label for="exampleFormControlSelect2">Adicionar produtos a categoria:</label>
-                                <input type="text" class="form-control mb-3" id="searchInput"
-                                    placeholder="Buscar por nome do remetente, destinatario ou codigo do pedido">
-                                <div class="">
+                               
+                                <div  class="table-container1 border" id="produtoList">
                                     <ul class="list-group list-group-flush table-container1 border">
                                     
                                         @if (count($produtos) > 0)
@@ -80,8 +79,7 @@
                         </div>
 
                         <div class="mb-3 mt-1 col-md-6">
-                            <input type="text" class="form-control" id="searchInput"
-                                placeholder="Buscar por nome do remetente, destinatario ou codigo do pedido">
+                           
 
                         </div>
                     </div>
