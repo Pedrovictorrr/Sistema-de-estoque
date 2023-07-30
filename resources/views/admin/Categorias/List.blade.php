@@ -174,7 +174,7 @@
                                     @if ($produto->nome && $produto->categoria && $produto->categoria->NomeCategoria)
                                         <li class="list-group-item">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $produto->id }}" value="{{ $produto->id }}">
+                                                <input class="form-check-input" name="idProduto" type="checkbox" id="inlineCheckbox{{ $produto->id }}" value="{{ $produto->id }}">
                                                 <label class="form-check-label" for="inlineCheckbox{{ $produto->id }}">{{ $produto->id }} - {{ $produto->nome }} - [{{ $produto->categoria->NomeCategoria }}]</label>
                                             </div>
                                         </li>
